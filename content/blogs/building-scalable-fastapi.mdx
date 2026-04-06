@@ -1,0 +1,29 @@
+---
+title: "Building Scalable FastAPI Backend with uv and Mangum"
+date: "April 06, 2026"
+excerpt: "An exploration into serverless architecture focused on low cold-start latency and simplified dependency management."
+---
+
+# Building Scalable FastAPI Backends
+
+When designing serverless architectures, minimizing cold-start latency is a constant battle. The combination of **FastAPI**, compiled with blazing fast package management via **uv**, and bound directly to AWS Lambda hooks using **Mangum** offers a superb path forward.
+
+## Why this Architecture?
+
+Traditional Python package managers like pip can be slow in CI/CD environments. Using `uv` guarantees lock-file integrity and compiles binary dependencies optimally. Mangum allows standard ASGI applications (like FastAPI) to integrate natively with Lambda event proxies (ApiGateway).
+
+### Example Docker Setup
+
+If you are wrapping this inside an AWS ECR container image format to bypass the Lambda 250MB hard limit:
+
+```dockerfile
+FROM ghcr.io/astral-sh/uv:latest AS builder
+WORKDIR /app
+COPY uv.lock pyproject.toml ./
+RUN uv pip install -r pyproject.toml --system
+
+FROM python:3.11-slim
+COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY src/ /app
+CMD ["app.main.handler"]
+```

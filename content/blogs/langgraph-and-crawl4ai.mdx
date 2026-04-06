@@ -1,0 +1,34 @@
+---
+title: "LangGraph and Crawl4AI for Agentic Tasks"
+date: "March 15, 2026"
+excerpt: "Building an agentic processing pipeline capable of deep web scraping and stateful reasoning."
+---
+
+# Agentic State Orchestration
+
+Stateful reasoning pipelines provide a completely new paradigm in handling complex asynchronous business logic.
+By leveraging LangGraph nodes in Python, we can compile cyclical graph routing.
+
+## Code Demonstration
+
+Below is a Python snippet demonstrating FastAPI routing to a LangGraph node:
+
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
+# Assume agent_executor is a compiled LangGraph app
+from app.graph import agent_executor 
+
+app = FastAPI()
+
+class QueryRequest(BaseModel):
+    query: str
+
+@app.post("/api/agent")
+async def run_agent(request: QueryRequest):
+    # LangGraph state executor
+    result = await agent_executor.ainvoke({
+        "messages": [("user", request.query)]
+    })
+    return {"response": result["messages"][-1].content}
+```
