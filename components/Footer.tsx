@@ -4,6 +4,8 @@ import { Send, Mail, Globe } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { toast } from "sonner";
 
+import { Tooltip } from "@/components/Tooltip";
+
 export default function Footer() {
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,49 +22,61 @@ export default function Footer() {
               Senior AI Engineer | Ex-Google | Full-Stack Architect
             </p>
             <div className="flex space-x-4">
-              <a href="mailto:thomasm.guru@gmail.com" className="text-zinc-500 hover:text-blue-500 transition">
-                <Mail size={20} />
-              </a>
-              <a href="https://github.com/thomasmguru-spec" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-blue-500 transition">
-                <FaGithub size={20} />
-              </a>
-              <a href="https://www.linkedin.com/in/thomas-mckinney-837a183b5/" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-blue-500 transition">
-                <FaLinkedin size={20} />
-              </a>
-              <a href="https://thomas-mckinney-portfolio.vercel.app/" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-blue-500 transition">
-                <Globe size={20} />
-              </a>
+              <Tooltip label="Email Me" position="top">
+                <a href="mailto:thomasm.guru@gmail.com" className="text-zinc-500 hover:text-blue-500 transition block">
+                  <Mail size={20} />
+                </a>
+              </Tooltip>
+              <Tooltip label="GitHub" position="top">
+                <a href="https://github.com/thomasmguru-spec" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-blue-500 transition block">
+                  <FaGithub size={20} />
+                </a>
+              </Tooltip>
+              <Tooltip label="LinkedIn" position="top">
+                <a href="https://www.linkedin.com/in/thomas-mckinney-837a183b5/" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-blue-500 transition block">
+                  <FaLinkedin size={20} />
+                </a>
+              </Tooltip>
+              <Tooltip label="Portfolio" position="top">
+                <a href="https://thomas-mckinney-portfolio.vercel.app/" target="_blank" rel="noreferrer" className="text-zinc-500 hover:text-blue-500 transition block">
+                  <Globe size={20} />
+                </a>
+              </Tooltip>
             </div>
           </div>
           <div>
-            <form onSubmit={handleSend} className="flex items-end space-x-2">
-              <div className="flex-1 space-y-3">
+            <h3 className="text-xl font-bold mb-2">Get In Touch</h3>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-6">Have a question or want to work together?</p>
+            <form onSubmit={handleSend} className="flex flex-col space-y-4">
+              <div className="flex space-x-3 w-full">
                 <input
                   type="text"
-                  placeholder="Your Name, Please"
+                  placeholder="Name"
                   required
-                  className="w-full bg-white dark:bg-black border border-zinc-300 dark:border-zinc-700 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-1/2 bg-white dark:bg-black border border-zinc-300 dark:border-zinc-700 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <input
                   type="email"
-                  placeholder="Your mail, Please"
+                  placeholder="Email"
                   required
-                  className="w-full bg-white dark:bg-black border border-zinc-300 dark:border-zinc-700 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-1/2 bg-white dark:bg-black border border-zinc-300 dark:border-zinc-700 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+              </div>
+              <div className="flex items-center space-x-3 w-full">
                 <textarea
                   placeholder="Message"
                   required
-                  rows={2}
-                  className="w-full bg-white dark:bg-black border border-zinc-300 dark:border-zinc-700 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  rows={8}
+                  className="flex-1 bg-white dark:bg-black border border-zinc-300 dark:border-zinc-700 rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+                <button
+                  type="submit"
+                  className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-3 flex-shrink-0 transition-transform active:scale-95 flex items-center justify-center h-12 w-12"
+                  aria-label="Send message"
+                >
+                  <Send size={18} />
+                </button>
               </div>
-              <button
-                type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-3 flex-shrink-0 transition-transform active:scale-95 flex items-center justify-center h-12 w-12"
-                aria-label="Send message"
-              >
-                <Send size={18} />
-              </button>
             </form>
           </div>
         </div>

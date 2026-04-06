@@ -1,7 +1,13 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Calendar } from "lucide-react";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getBlogPost } from "@/utils/mdx";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const post = getBlogPost(resolvedParams.slug);
+  return { title: post?.title || "Blog Post" };
+}
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;

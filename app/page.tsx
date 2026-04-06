@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Briefcase, GraduationCap, Code } from "lucide-react";
+import { Briefcase, GraduationCap, Code, Globe, Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { getBlogPosts } from "@/utils/mdx";
+import HeroResumeButton from "@/components/HeroResumeButton";
 
 export default function Home() {
   const blogs = getBlogPosts().slice(0, 3);
@@ -21,16 +23,14 @@ export default function Home() {
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
             Hi, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">Thomas</span>
           </h1>
-          <h2 className="text-2xl md:text-3xl text-zinc-600 dark:text-zinc-300 font-medium">
+          <h2 className="text-2xl md:text-3xl text-zinc-700 dark:text-zinc-300 font-medium">
             Senior AI Engineer & Full-Stack Architect
           </h2>
-          <p className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
             I specialize in Agentic RAG, high-performance backends, and building for scale. Past impact at Google, Netflix, Slack, and Cloudflare.
           </p>
           <div className="pt-8 flex items-center justify-center space-x-4">
-            <Link href="/resume" className="px-8 py-4 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-black font-semibold rounded-full hover:scale-105 transition-transform flex items-center">
-              Explore Resume <ArrowRight className="ml-2" size={20} />
-            </Link>
+            <HeroResumeButton />
             <Link href="#contact" className="px-8 py-4 border border-zinc-200 dark:border-zinc-800 font-semibold rounded-full hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors">
               Contact Me
             </Link>
@@ -73,7 +73,7 @@ export default function Home() {
                   <p className="text-sm text-zinc-500">{exp.period}</p>
                 </div>
                 <div className="md:w-2/3">
-                  <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">{exp.desc}</p>
+                  <p className="text-zinc-700 dark:text-zinc-400 leading-relaxed">{exp.desc}</p>
                 </div>
               </div>
             ))}
@@ -93,7 +93,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-2">Stanford University</h3>
               <p className="text-zinc-500 mb-4">Sep 2020 – Jun 2023</p>
               <h4 className="text-xl font-medium text-blue-500">M.S. in Computer Science</h4>
-              <p className="text-zinc-600 dark:text-zinc-400 mt-4 leading-relaxed">
+              <p className="text-zinc-700 dark:text-zinc-400 mt-4 leading-relaxed">
                 Specialization: Distributed Systems & Artificial Intelligence.
               </p>
             </div>
@@ -101,7 +101,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-2">MIT</h3>
               <p className="text-zinc-500 mb-4">Sep 2013 – May 2017</p>
               <h4 className="text-xl font-medium text-purple-500">B.S. in Software Engineering</h4>
-              <p className="text-zinc-600 dark:text-zinc-400 mt-4 leading-relaxed">
+              <p className="text-zinc-700 dark:text-zinc-400 mt-4 leading-relaxed">
                 Foundation in algorithms, data structures, and core software engineering principles.
               </p>
             </div>
@@ -156,7 +156,7 @@ export default function Home() {
                     <div className="border-b border-zinc-200 dark:border-zinc-800 pb-6 group-hover:pl-4 transition-all">
                       <p className="text-sm text-zinc-500 mb-2">{blog.date}</p>
                       <h3 className="text-lg font-bold group-hover:text-purple-500 transition-colors">{blog.title}</h3>
-                      <p className="text-zinc-600 dark:text-zinc-400 mt-2 line-clamp-2">{blog.excerpt}</p>
+                      <p className="text-zinc-700 dark:text-zinc-400 mt-2 line-clamp-2">{blog.excerpt}</p>
                     </div>
                   </Link>
                 ))}
@@ -174,10 +174,18 @@ export default function Home() {
             I'm currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-8">
-            <a href="mailto:thomasm.guru@gmail.com" className="px-6 py-3 bg-zinc-100 dark:bg-zinc-900 rounded-full font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">Email Me</a>
-            <a href="https://github.com/thomasmguru-spec" target="_blank" rel="noreferrer" className="px-6 py-3 bg-zinc-100 dark:bg-zinc-900 rounded-full font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">GitHub</a>
-            <a href="https://www.linkedin.com/in/thomas-mckinney-837a183b5/" target="_blank" rel="noreferrer" className="px-6 py-3 bg-zinc-100 dark:bg-zinc-900 rounded-full font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">LinkedIn</a>
-            <a href="https://thomas-mckinney-portfolio.vercel.app/" target="_blank" rel="noreferrer" className="px-6 py-3 bg-zinc-100 dark:bg-zinc-900 rounded-full font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">Portfolio</a>
+            <a href="mailto:thomasm.guru@gmail.com" className="px-6 py-3 bg-zinc-100 dark:bg-zinc-900 rounded-full font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition flex items-center">
+              <Mail size={18} className="mr-2" /> Email Me
+            </a>
+            <a href="https://github.com/thomasmguru-spec" target="_blank" rel="noreferrer" className="px-6 py-3 bg-zinc-100 dark:bg-zinc-900 rounded-full font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition flex items-center">
+              <FaGithub size={18} className="mr-2" /> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/thomas-mckinney-837a183b5/" target="_blank" rel="noreferrer" className="px-6 py-3 bg-zinc-100 dark:bg-zinc-900 rounded-full font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition flex items-center">
+              <FaLinkedin size={18} className="mr-2" /> LinkedIn
+            </a>
+            <a href="https://thomas-mckinney-portfolio.vercel.app/" target="_blank" rel="noreferrer" className="px-6 py-3 bg-zinc-100 dark:bg-zinc-900 rounded-full font-medium hover:bg-zinc-200 dark:hover:bg-zinc-800 transition flex items-center">
+              <Globe size={18} className="mr-2" /> Portfolio
+            </a>
           </div>
         </div>
       </section>

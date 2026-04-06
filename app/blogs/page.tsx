@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { getBlogPosts } from "@/utils/mdx";
 
+export const metadata = { title: "Blog" };
+
 export default function BlogsPage() {
   const blogs = getBlogPosts();
   

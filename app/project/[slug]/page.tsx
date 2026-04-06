@@ -4,6 +4,11 @@ import { FaGithub } from "react-icons/fa";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getBlogPost } from "@/utils/mdx";
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  return { title: `Project: ${resolvedParams.slug}` };
+}
+
 export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const post = getBlogPost(resolvedParams.slug);
